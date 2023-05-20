@@ -1,0 +1,25 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+{{ partial "sidebar.html" . }}
+<div class="content">
+{{ .Content }}
+<br>
+<hr>
+<br>
+Latest Posts:
+<br><br>
+<ul>
+{{- range where .Site.RegularPages "Type" "posts" | first 5 }}
+<li><article class="post-snippet">
+	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+		{{ .Date.Format "Jan 02 2006" }}:
+	</time>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</article></li>
+<br>
+{{ end -}}
+</ul>
+If you want to see all posts check the sidebar to the left.<br>
+The RSS feed of this site can be found here: <a href="/index.xml">RSS</a>
+</div>
+{{ partial "footer.html" . }}
